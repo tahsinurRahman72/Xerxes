@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div>
         <heading/>
         <get-started/>
         <div class="content">
@@ -10,12 +10,11 @@
 
 <script>
 import drop from './dropFiles.vue'
-import heading from './header.vue'
+import heading from './heading.vue'
 import getStarted from './getStartedMessage.vue'
 import contentBody from './tourContentBody.vue'
 import contact from './contact.vue'
 export default {
-  name: 'main',
   data () {
     return {
 
@@ -30,7 +29,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

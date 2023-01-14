@@ -44,7 +44,7 @@
 
 <script>
 import axios from 'axios'
-import heading from './header.vue'
+import heading from './heading.vue'
 import fillform from './formFillup.vue'
 export default {
   name: 'individualPackage',
@@ -74,7 +74,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

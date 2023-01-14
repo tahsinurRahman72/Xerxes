@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="mainboy">
     <div
       class="dropzone-container"
       @dragover="dragover"
@@ -42,8 +42,8 @@
         </div>
       </div>
       <div class="buttonClass">
-        <button v-on:click="goToTourPage()" class="carousel-button">
-          SCAN
+        <button v-on:click="uploadFiles()" class="carousel-button">
+          Scan
         </button>
       </div>
     </div>
@@ -56,24 +56,26 @@ export default {
   data () {
     return {
       isDragging: false,
+      flag: false,
       files: []
     }
   },
   methods: {
-    uploadFiles () {
+    async uploadFiles () {
       const files = this.files
+      // console.log(files)
       const formData = new FormData()
-      files.forEach((file) => {
-        formData.append('selectedFiles', file)
-      })
-      axios({
-        method: 'POST',
-        url: 'http://path/to/api/upload-files',
-        data: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
+      // files.forEach((file) => {
+      formData.append('selectedFile', files)
+      console.log(formData)
+      // })
+      axios.post('http://localhost:8081/pdf/scan_pdf', formData)
+        .then((response) => {
+          this.message = 'Success!'
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
     onChange () {
       this.files = [...this.$refs.file.files]
@@ -99,7 +101,15 @@ export default {
 </script>
 
 <style scoped>
-.main {
+.carousel-button{
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  padding-inline: 2rem;
+  padding-block: .5rem;
+}
+.mainboy {
     display: flex;
     flex-grow: 1;
     align-items: center;

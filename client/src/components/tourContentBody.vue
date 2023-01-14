@@ -1,5 +1,5 @@
 <template>
-<div style="padding-bottom: 100px;">
+<div>
 <h1 class="text-white mb-4" style="text-align: center">Drag and Drop your PDF to Scan</h1>
         <div class="parent-wrapper">
           <drop/>
@@ -11,7 +11,6 @@ import axios from 'axios'
 import drop from './dropFiles.vue'
 import { slider, slideritem } from 'vue-concise-slider'
 export default {
-  el: '#app',
   mounted () {
     axios.get('http://localhost:8081/view-package/packages')
       .then((response) => {
@@ -61,12 +60,6 @@ export default {
 }
 </script>
 <style scoped>
-.carousel-button{
-  background-color: rgba(255, 255, 255, 0);
-  border-color: rgb(255, 255, 255);
-  border-radius: 5px;
-  color: rgb(255, 255, 255);
-}
 .parent-wrapper{
   display: flex;
   margin-bottom:1rem;
