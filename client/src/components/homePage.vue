@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import drop from './dropFiles.vue'
 import heading from './header.vue'
 import getStarted from './getStartedMessage.vue'
 import contentBody from './tourContentBody.vue'
@@ -24,6 +25,7 @@ export default {
     heading,
     getStarted,
     contentBody,
+    drop,
     contact
   }
 }

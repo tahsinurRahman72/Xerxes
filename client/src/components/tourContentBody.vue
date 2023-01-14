@@ -1,16 +1,14 @@
 <template>
 <div style="padding-bottom: 100px;">
 <h1 class="text-white mb-4" style="text-align: center">Drag and Drop your PDF to Scan</h1>
-<div style="width:100%;margin:20px auto;height:400px">
-
-</div>
-    <button v-on:click="goToTourPage()" class="carousel-button" style="display: block; margin-left: auto; margin-right: auto">
-      SCAN
-    </button>
+        <div class="parent-wrapper">
+          <drop/>
+        </div>
 </div>
 </template>
 <script>
 import axios from 'axios'
+import drop from './dropFiles.vue'
 import { slider, slideritem } from 'vue-concise-slider'
 export default {
   el: '#app',
@@ -57,15 +55,23 @@ export default {
   },
   components: {
     slider,
-    slideritem
+    slideritem,
+    drop
   }
 }
 </script>
 <style scoped>
 .carousel-button{
-  background-color: rgba(255, 255, 255, 0.656);
-  border-color: rgba(255, 255, 255, 0);
-  border-radius: 15px;
-  color: rgb(28, 64, 84);
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+}
+.parent-wrapper{
+  display: flex;
+  margin-bottom:1rem;
+  width:100%;
+  height:100%; /* was 50% */
+  justify-content: space-around;
 }
 </style>
