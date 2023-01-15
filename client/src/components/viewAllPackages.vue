@@ -55,7 +55,7 @@ export default {
     }
   },
   mounted () {
-    axios.get('http://localhost:8081/view-package/packages')
+    axios.get()
       .then((response) => {
         this.packages = response.data
       })

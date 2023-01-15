@@ -12,7 +12,7 @@ import drop from './dropFiles.vue'
 import { slider, slideritem } from 'vue-concise-slider'
 export default {
   mounted () {
-    axios.get('http://localhost:8081/view-package/packages')
+    axios.get('')
       .then((response) => {
         this.packages = response.data
       })

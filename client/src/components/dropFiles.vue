@@ -56,7 +56,6 @@ export default {
   data () {
     return {
       isDragging: false,
-      flag: false,
       files: []
     }
   },
@@ -65,13 +64,17 @@ export default {
       const files = this.files
       // console.log(files)
       const formData = new FormData()
-      // files.forEach((file) => {
-      formData.append('selectedFile', files)
-      console.log(formData)
-      // })
+      files.forEach((file) => {
+        formData.append('file', file)
+        formData.append('fileName', file.name)
+        console.log(file)
+        console.log(file.name)
+        console.log('success')
+      })
       axios.post('http://localhost:8081/pdf/scan_pdf', formData)
         .then((response) => {
-          this.message = 'Success!'
+          console.log('success hoise')
+          console.log(response.data)
         })
         .catch((err) => {
           console.log(err)
