@@ -9,11 +9,9 @@
 </template>
 
 <script>
-import drop from './dropFiles.vue'
 import heading from './heading.vue'
 import getStarted from './getStartedMessage.vue'
-import contentBody from './tourContentBody.vue'
-import contact from './contact.vue'
+import contentBody from './ContentBody.vue'
 export default {
   data () {
     return {
@@ -23,9 +21,7 @@ export default {
   components: {
     heading,
     getStarted,
-    contentBody,
-    drop,
-    contact
+    contentBody
   }
 }
 </script>

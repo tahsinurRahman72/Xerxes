@@ -66,12 +66,16 @@ export default {
       const formData = new FormData()
       files.forEach((file) => {
         formData.append('file', file)
-        formData.append('fileName', file.name)
+        // formData.append('fileName', file.name)
         console.log(file)
-        console.log(file.name)
+        // console.log(file.name)
         console.log('success')
       })
-      axios.post('http://localhost:8081/pdf/scan_pdf', formData)
+      axios.post('http://localhost:8081/pdf/upload', formData, {
+        headers: {
+          'Content-type': 'multipart/form-data'
+        }
+      })
         .then((response) => {
           console.log('success hoise')
           console.log(response.data)
