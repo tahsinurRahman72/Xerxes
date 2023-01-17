@@ -1,3 +1,1 @@
-def main():
-    
-    return 'Hello'
+print('Hello')

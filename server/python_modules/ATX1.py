@@ -1,12 +1,7 @@
 from analyzePDF import analyzePDF
 import sys
+import json
 class extractor:
-	def __getstate__(self):
-		return self.__dict__
-
-	def __setstate__(self, f):
-		self.__dict__ = f
-
 	def analyze_pdf(self, filename):
 		result = analyzePDF(filename)
 		my_list = [] 
@@ -42,7 +37,13 @@ class extractor:
 		
 		return columns, values
 
+def main(val):
+	extractPDF = extractor()
+	columns, values = extractPDF.run(val)
+	# print(values)
+	sys.stdout.write(json.dumps(values))
 
-extractPDF = extractor()
-columns, values = extractPDF.run(sys.stdin.read())
-print(values)
+
+if __name__ == '__main__':
+    st = sys.argv[1]
+    main(st)

@@ -25,32 +25,23 @@ router.get('/files/:filename', (req,res) => {
           err: 'No file exists'
         })
       }
-      // res.json(file)
       if (file.contentType === 'application/pdf') {
         const readstream = gridfsBucket.openDownloadStreamByName(file.filename)
-        readstream.pipe(fs.createWriteStream(path.join(pdfsPath, file.filename)))
-        readstream.on('end', () => {
-            res.end()
-        });
-
+        const writestream = fs.createWriteStream(path.join(pdfsPath, file.filename))
+        readstream.pipe(writestream)
+        writestream.on('finish', () => {
+            let options = {
+                args: [path.join(pdfsPath, file.filename)]
+            }
+            PythonShell.run("F:/BRAC Undergraduate Courses/Thesis/Project/pdfGuardian/server/python_modules/ATX1.py", options, function(err, result) {
+                res.json(result)
+            })
+        })
       } else {
         res.status(404).json({
           err: 'Not a PDF File'
         })
       }
-
-      // let options = {
-      //   mode: 'text',
-      //   pythonOptions: ['-u'], // get print results in real-time
-      //   func: 'ATX1.0.run',
-      //   args: ['F:/BRAC Undergraduate Courses/Thesis/Project/pdfGuardian/server/pdfs/375c0295a75bfe2770db6c2c94842d03.pdf']
-      // };
-
-      // PythonShell.run("ATX1.0.py", options, function(err, result) {
-      //   res.json(result)
-      // })
-
     })
   })
-
   module.exports = router

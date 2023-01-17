@@ -77,7 +77,6 @@ export default {
         }
       })
         .then((response) => {
-          console.log('success hoise')
           console.log(response.data)
         })
         .catch((err) => {
