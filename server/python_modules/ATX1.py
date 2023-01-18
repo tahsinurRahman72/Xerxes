@@ -25,8 +25,13 @@ class extractor:
 		analyzed_list_unwrap[0].pop('header')
 		
 		final_dict = dict(analyzed_list_unwrap[0])
+  
 		del column_attributes[0:3]
 		del column_attributes_corr_val[0:3]
+		del column_attributes[12]
+		del column_attributes[15:18]
+		del column_attributes[14]
+		del column_attributes[15]
   
 		return final_dict, column_attributes, column_attributes_corr_val
 

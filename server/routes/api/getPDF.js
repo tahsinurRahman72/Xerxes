@@ -30,11 +30,23 @@ router.get('/files/:filename', (req,res) => {
         const writestream = fs.createWriteStream(path.join(pdfsPath, file.filename))
         readstream.pipe(writestream)
         writestream.on('finish', () => {
+            let extractedVals
             let options = {
-                args: [path.join(pdfsPath, file.filename)]
+              mode: 'json',
+              args: [path.join(pdfsPath, file.filename)]
             }
             PythonShell.run("F:/BRAC Undergraduate Courses/Thesis/Project/pdfGuardian/server/python_modules/ATX1.py", options, function(err, result) {
-                res.json(result)
+                if (err) console.log(err)
+                extractedVals = result
+                res.json((extractedVals))
+                // let resultOptions = {
+                //   mode: 'json',
+                //   args: [extractedVals]
+                // }
+                // PythonShell.run("F:/BRAC Undergraduate Courses/Thesis/Project/pdfGuardian/server/python_modules/evaluate.py", resultOptions, function(err, result) {
+                //     if (err) console.log(err)
+                //     res.json(result)
+                // })
             })
         })
       } else {
